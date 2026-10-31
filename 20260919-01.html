@@ -1,0 +1,315 @@
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI課程學員自我介紹</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;padding:28px 16px;
+  font-family:"Microsoft JhengHei",sans-serif;
+  background:#f4f6fa;color:#333;
+}
+.container{max-width:1200px;margin:auto}
+header{text-align:center;margin-bottom:28px}
+header h1{color:#34495e;font-size:30px}
+header p{color:#777}
+.summary{
+  display:flex;justify-content:center;
+  gap:15px;flex-wrap:wrap;margin-bottom:25px;
+}
+.summary-item{
+  background:white;padding:14px 25px;
+  border-radius:12px;text-align:center;
+  box-shadow:0 2px 8px #0000000d;
+}
+.summary-item strong{
+  display:block;font-size:25px;color:#34495e;
+}
+.search-area{
+  display:flex;justify-content:center;
+  gap:10px;margin-bottom:25px;flex-wrap:wrap;
+}
+input{
+  width:300px;max-width:100%;padding:12px;
+  border:1px solid #ddd;border-radius:10px;font-size:16px;
+}
+button{
+  padding:12px 20px;border:0;border-radius:10px;
+  background:#526d82;color:white;cursor:pointer;
+}
+.section-title{
+  margin:35px 0 18px;font-size:23px;
+  color:#34495e;border-left:5px solid #6c9bcf;
+  padding-left:12px;
+}
+.card-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:18px;
+}
+.card{
+  background:white;border-radius:16px;padding:20px;
+  box-shadow:0 3px 12px #0000000d;
+  border-top:5px solid #8bb8d8;
+  transition:.2s;
+}
+.card:hover{transform:translateY(-4px)}
+.card.old{border-top-color:#75a9a0}
+.card.new{border-top-color:#e5ad71}
+.card-top{
+  display:flex;justify-content:space-between;
+  margin-bottom:14px;align-items:center;
+}
+.number{font-size:14px;color:#777;font-weight:bold}
+.badge{
+  padding:5px 12px;border-radius:20px;font-size:13px;
+}
+.old .badge{background:#e2f1ec;color:#367c68}
+.new .badge{background:#fff0dc;color:#a86b28}
+.name{font-size:21px;font-weight:bold;color:#34495e}
+.age{color:#888;font-size:14px;margin:10px 0 15px}
+.info{border-top:1px solid #eee;padding-top:12px;margin-top:10px}
+.info h4{font-size:14px;color:#66899f;margin:0 0 7px}
+.info p{font-size:14px;line-height:1.8;margin:0;color:#555}
+.hidden{display:none!important}
+.empty{text-align:center;color:#888;padding:20px}
+footer{text-align:center;color:#999;font-size:13px;margin-top:40px}
+@media(max-width:600px){
+  header h1{font-size:24px}
+  .card-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<header>
+<h1>🌟 AI課程學員自我介紹</h1>
+<p>認識新朋友，一起學習 AI，一起迎接新時代！</p>
+</header>
+
+<div class="summary">
+<div class="summary-item"><strong>25</strong>全體學員</div>
+<div class="summary-item"><strong>11</strong>舊學員</div>
+<div class="summary-item"><strong>14</strong>新學員</div>
+</div>
+
+<div class="search-area">
+<input id="search" type="text"
+placeholder="🔍 搜尋編號、姓名或學習動機..."
+oninput="searchCards()">
+<button onclick="showAll()">顯示全部</button>
+</div>
+
+<h2 class="section-title">🌿 舊學員</h2>
+<div class="card-grid" id="oldCards"></div>
+
+<h2 class="section-title">🌻 新學員</h2>
+<div class="card-grid" id="newCards"></div>
+
+<div class="empty" id="empty" style="display:none">
+找不到符合的學員資料。
+</div>
+
+<footer>AI生活應用課程｜一起學習・一起成長 ❤️</footer>
+
+</div>
+
+<script>
+const students = [
+
+{no:1,name:"王@珠",age:"68",type:"舊學員",
+background:"已經上過很多期課程，今天有事請假。",
+impression:"持續學習AI，展現終身學習精神。"},
+
+{no:2,name:"林@慧",age:"53",type:"舊學員",
+background:"第二次上課，上學期缺課較多。",
+impression:"希望重新學習，把之前沒學好的內容補起來。"},
+
+{no:3,name:"許@榛",age:"47",type:"舊學員",
+background:"第三次上課，上學期缺課較多。",
+impression:"希望重新學習，並將AI運用在工作上。"},
+
+{no:4,name:"曾@美",age:"64",type:"舊學員",
+background:"第二次上課，已向老師請假一個月。",
+impression:"因個人事務暫時請假。"},
+
+{no:5,name:"黃@庭",age:"56",type:"舊學員",
+background:"上課次數未明確。",
+impression:"週六下午來上課湊人氣，提升電腦學習力。"},
+
+{no:6,name:"王@貞",age:"52",type:"舊學員",
+background:"第二次上課。",
+impression:"想讓自己的週六生活更加充實。"},
+
+{no:7,name:"黃@香",age:"70",type:"舊學員",
+background:"第三次來社大上課。",
+impression:"因為想學習AI，所以持續回到社大上課。"},
+
+{no:8,name:"林@華",age:"70+",type:"舊學員",
+background:"已有上課經驗。",
+impression:"希望認識新事物及年輕朋友。"},
+
+{no:9,name:"鄭@彰",age:"65",type:"舊學員",
+background:"第二次上課。",
+impression:"想增長知識、追上世界潮流，特別提到「最認真的老師」。"},
+
+{no:10,name:"楊@姝",age:"67",type:"舊學員",
+background:"持續參與課程。",
+impression:"喜歡課堂氛圍，希望溫故知新。"},
+
+{no:12,name:"林@雲",age:"26",type:"舊學員",
+background:"第二次上課。",
+impression:"認為課程先進、跟得上時事，老師細心教學，也有熱心同學協助。"},
+
+{no:13,name:"林@儒",age:"61",type:"新學員",
+background:"第一次上課。",
+impression:"利用星期六下午的空檔，希望提升AI能力。"},
+
+{no:15,name:"許@",age:"69",type:"新學員",
+background:"第一次上課。",
+impression:"已經會使用AI，但希望進一步深入學習。"},
+
+{no:16,name:"粘@莉",age:"63",type:"新學員",
+background:"初次來社大上課。",
+impression:"希望將AI帶入日常生活。"},
+
+{no:17,name:"莊@章",age:"62",type:"新學員",
+background:"第一次上課。",
+impression:"想利用時間空檔學習AI。"},
+
+{no:18,name:"施@蓁",age:"58",type:"新學員",
+background:"第一次來社大上課。",
+impression:"因為想學習AI而參加課程。"},
+
+{no:19,name:"曾@銘",age:"65",type:"新學員",
+background:"第一次上課，即將滿65歲。",
+impression:"想了解AI應用的難度與廣度，也期待與同學交流、互相學習。"},
+
+{no:20,name:"廖@昭",age:"75",type:"新學員",
+background:"曾參加過兩次AI課程。",
+impression:"這次重修主要是為了「喚起學習記憶」。"},
+
+{no:21,name:"李@平",age:"67",type:"新學員",
+background:"第一次上課，已退休。",
+impression:"退休後想利用時間學習新知。"},
+
+{no:22,name:"陸@蘭",age:"37",type:"新學員",
+background:"第一次上課。",
+impression:"想認識AI，並應用在日常生活中。"},
+
+{no:23,name:"林@鋐",age:"19",type:"新學員",
+background:"第一次上課。",
+impression:"因為怕媽媽一個人來上課太無聊，所以陪媽媽一起來。"},
+
+{no:24,name:"高@弘",age:"50",type:"新學員",
+background:"第一次上課。",
+impression:"星期六下午在家無聊，因此來上課。"},
+
+{no:25,name:"施@玲",age:"62",type:"新學員",
+background:"第一次上課。",
+impression:"星期六下午在家無聊，想來學習一項新興趣。"},
+
+{no:26,name:"孫@雲",age:"67",type:"新學員",
+background:"第一次上AI課程。",
+impression:"對新事物充滿好奇，羨慕同學能用AI生成圖片和影片，希望自己也能學會。"},
+
+{no:27,name:"葉@美",age:"70",type:"新學員",
+background:"第一次學習AI。",
+impression:"想知道AI如何應用在生活中。"}
+
+];
+
+function createCard(s){
+ const card=document.createElement("article");
+ card.className="card "+(s.type==="舊學員"?"old":"new");
+ card.dataset.search=[s.no,s.name,s.age,s.type,
+ s.background,s.impression].join(" ").toLowerCase();
+
+ const top=document.createElement("div");
+ top.className="card-top";
+
+ const number=document.createElement("span");
+ number.className="number";
+ number.textContent="NO. "+s.no;
+
+ const badge=document.createElement("span");
+ badge.className="badge";
+ badge.textContent=s.type;
+
+ top.append(number,badge);
+
+ const name=document.createElement("div");
+ name.className="name";
+ name.textContent=s.name;
+
+ const age=document.createElement("div");
+ age.className="age";
+ age.textContent="🎂 "+s.age+" 歲";
+
+ card.append(top,name,age);
+
+ [["📖 學員背景",s.background],
+  ["✨ 令人印象深刻的內容",s.impression]]
+ .forEach(([heading,content])=>{
+   const section=document.createElement("div");
+   section.className="info";
+
+   const h=document.createElement("h4");
+   h.textContent=heading;
+
+   const p=document.createElement("p");
+   p.textContent=content;
+
+   section.append(h,p);
+   card.append(section);
+ });
+
+ return card;
+}
+
+students.sort((a,b)=>a.no-b.no);
+
+students.forEach(s=>{
+ const target=document.getElementById(
+  s.type==="舊學員"?"oldCards":"newCards"
+ );
+ target.appendChild(createCard(s));
+});
+
+function searchCards(){
+ const keyword=document.getElementById("search")
+ .value.toLowerCase().trim();
+
+ let visible=0;
+
+ document.querySelectorAll(".card").forEach(card=>{
+  const match=card.dataset.search.includes(keyword);
+  card.classList.toggle("hidden",!match);
+  if(match)visible++;
+ });
+
+ document.querySelectorAll(".section-title").forEach(title=>{
+  const grid=title.nextElementSibling;
+  title.classList.toggle(
+   "hidden",
+   !grid.querySelector(".card:not(.hidden)")
+  );
+ });
+
+ document.getElementById("empty").style.display=
+ visible?"none":"block";
+}
+
+function showAll(){
+ document.getElementById("search").value="";
+ searchCards();
+}
+</script>
+
+</body>
+</html>
