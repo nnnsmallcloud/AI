@@ -1,0 +1,805 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>畫出心中的小宇宙｜彰化社區大學</title>
+
+<style>
+:root {
+  --green: #637c68;
+  --dark: #354d3d;
+  --cream: #faf7ef;
+  --pink: #e9b8ae;
+  --brown: #806b59;
+  --gold: #d4ad70;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  background: var(--cream);
+  color: #45483f;
+  line-height: 1.9;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(250,247,239,.96);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #e9e1d5;
+  padding: 12px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  color: var(--dark);
+  font-weight: bold;
+  font-size: 19px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 22px;
+  font-size: 14px;
+}
+
+.nav-links a:hover {
+  color: #bd806f;
+}
+
+.hero {
+  min-height: 600px;
+  padding: 100px 8%;
+  display: flex;
+  align-items: center;
+  background:
+    linear-gradient(90deg, rgba(38,52,40,.78), rgba(38,52,40,.12)),
+    url("https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1800&q=85")
+    center/cover;
+  color: white;
+}
+
+.hero-content {
+  max-width: 720px;
+}
+
+.tag {
+  display: inline-block;
+  border: 1px solid rgba(255,255,255,.7);
+  border-radius: 30px;
+  padding: 5px 20px;
+  letter-spacing: 2px;
+  font-size: 13px;
+}
+
+.hero h1 {
+  font-size: clamp(40px, 7vw, 76px);
+  line-height: 1.3;
+  margin: 25px 0;
+  letter-spacing: 4px;
+}
+
+.hero p {
+  font-size: 19px;
+  max-width: 550px;
+}
+
+.hero-btn {
+  display: inline-block;
+  margin-top: 32px;
+  padding: 12px 35px;
+  background: #e7c9a3;
+  color: #394d3d;
+  border-radius: 30px;
+  font-weight: bold;
+  transition: .3s;
+}
+
+.hero-btn:hover {
+  background: white;
+  transform: translateY(-3px);
+}
+
+section {
+  padding: 85px 8%;
+  scroll-margin-top: 65px;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+.section-title small {
+  color: #bc8e71;
+  letter-spacing: 4px;
+  font-weight: bold;
+}
+
+.section-title h2 {
+  color: var(--dark);
+  font-size: 32px;
+  margin: 8px 0;
+}
+
+.section-title p {
+  color: #827d72;
+}
+
+.intro {
+  text-align: center;
+  max-width: 850px;
+  margin: auto;
+}
+
+.intro h2 {
+  color: var(--dark);
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.intro p {
+  font-size: 17px;
+}
+
+.highlight {
+  color: #b17c68;
+  font-weight: bold;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 20px;
+  margin-top: 45px;
+}
+
+.info-card {
+  background: white;
+  border-radius: 18px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0,0,0,.04);
+}
+
+.info-card .icon {
+  font-size: 35px;
+}
+
+.info-card h3 {
+  color: var(--green);
+  margin: 8px 0;
+}
+
+.info-card p {
+  font-size: 14px;
+}
+
+.soft-bg {
+  background: #f0eee4;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+  gap: 16px;
+}
+
+.feature {
+  background: white;
+  padding: 24px 16px;
+  border-radius: 15px;
+  text-align: center;
+  transition: .3s;
+}
+
+.feature:hover {
+  transform: translateY(-7px);
+}
+
+.feature span {
+  font-size: 35px;
+}
+
+.feature h3 {
+  color: var(--green);
+  margin: 12px 0;
+  font-size: 17px;
+}
+
+.feature p {
+  font-size: 13px;
+}
+
+.course-info {
+  max-width: 900px;
+  margin: auto;
+}
+
+.course-info table,
+.syllabus {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.course-info th,
+.course-info td {
+  padding: 16px 20px;
+  border-bottom: 1px solid #eee8dc;
+  text-align: left;
+}
+
+.course-info th {
+  width: 25%;
+  color: var(--green);
+  background: #f3f1e9;
+}
+
+.description {
+  max-width: 950px;
+  margin: auto;
+}
+
+.description article {
+  background: white;
+  border-radius: 15px;
+  padding: 28px;
+  margin-bottom: 20px;
+}
+
+.description h3 {
+  color: var(--green);
+  margin-bottom: 10px;
+}
+
+.syllabus-wrap {
+  overflow-x: auto;
+  border-radius: 12px;
+}
+
+.syllabus th,
+.syllabus td {
+  padding: 15px;
+  border-bottom: 1px solid #eee9e0;
+  text-align: left;
+  vertical-align: top;
+  min-width: 110px;
+}
+
+.syllabus th {
+  background: var(--green);
+  color: white;
+  text-align: center;
+}
+
+.syllabus td:first-child {
+  text-align: center;
+  font-weight: bold;
+  color: var(--green);
+  white-space: nowrap;
+  min-width: 75px;
+}
+
+.syllabus td:nth-child(2) {
+  font-weight: bold;
+  min-width: 180px;
+  color: #82664f;
+}
+
+.syllabus td:last-child {
+  min-width: 350px;
+}
+
+.syllabus tr:hover {
+  background: #faf7ef;
+}
+
+.citizen {
+  background: #f1e8dc;
+  color: #926c53;
+  font-weight: bold;
+  text-align: center !important;
+}
+
+.sel-grid {
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+  gap: 15px;
+}
+
+.sel-card {
+  padding: 22px 15px;
+  background: white;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.sel-card h3 {
+  color: var(--green);
+  margin-bottom: 10px;
+}
+
+.sel-card p {
+  font-size: 14px;
+}
+
+.literacy {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 18px;
+}
+
+.literacy-card {
+  background: #fff;
+  padding: 25px 18px;
+  border-radius: 15px;
+  border-top: 4px solid #d7ad8c;
+}
+
+.literacy-card h3 {
+  color: var(--green);
+  margin-bottom: 10px;
+}
+
+.literacy-card p {
+  font-size: 14px;
+}
+
+.promo {
+  text-align: center;
+  color: white;
+  background:
+    linear-gradient(rgba(44,66,48,.83),rgba(44,66,48,.85)),
+    url("https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?auto=format&fit=crop&w=1600&q=80")
+    center/cover;
+  padding: 100px 8%;
+}
+
+.promo h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.promo p {
+  font-size: 18px;
+}
+
+.promo .hero-btn {
+  margin-top: 30px;
+}
+
+footer {
+  text-align: center;
+  background: #354d3d;
+  color: #e9e4d9;
+  padding: 30px;
+  font-size: 13px;
+}
+
+@media(max-width:900px) {
+  .feature-grid,
+  .sel-grid {
+    grid-template-columns: repeat(2,1fr);
+  }
+
+  .literacy {
+    grid-template-columns: repeat(2,1fr);
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .nav-links {
+    gap: 10px;
+    font-size: 12px;
+  }
+}
+
+@media(max-width:600px) {
+  nav {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+  }
+
+  .hero {
+    min-height: 500px;
+    padding: 65px 7%;
+  }
+
+  .hero h1 {
+    font-size: 42px;
+  }
+
+  section {
+    padding: 60px 6%;
+  }
+
+  .info-grid,
+  .feature-grid,
+  .sel-grid,
+  .literacy {
+    grid-template-columns: 1fr;
+  }
+
+  .section-title h2 {
+    font-size: 26px;
+  }
+
+  .promo h2 {
+    font-size: 28px;
+  }
+
+  .course-info th,
+  .course-info td {
+    padding: 12px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">🎨 彰化社區大學</div>
+  <div class="nav-links">
+    <a href="#about">課程介紹</a>
+    <a href="#features">課程特色</a>
+    <a href="#syllabus">18週課綱</a>
+    <a href="#sel">SEL學習</a>
+    <a href="#literacy">資訊素養</a>
+    <a href="#join">招生資訊</a>
+  </div>
+</nav>
+
+<!-- 首頁主視覺 -->
+<header class="hero">
+  <div class="hero-content">
+    <span class="tag">CHANGHUA COMMUNITY UNIVERSITY</span>
+    <h1>畫出心中的<br>小宇宙</h1>
+    <p>
+      用水彩療癒日常，用色彩認識自己，
+      用創作連結世界。
+    </p>
+    <a href="#about" class="hero-btn">探索這趟藝術旅程 →</a>
+  </div>
+</header>
+
+<!-- 課程介紹 -->
+<section id="about">
+  <div class="intro">
+    <div class="section-title">
+      <small>ABOUT THE COURSE</small>
+      <h2>讓藝術，成為生活的一部分</h2>
+    </div>
+    <p>
+      你有多久沒有好好為自己畫一幅畫了？
+      不需要美術基礎，也不需要天生具有藝術天分。
+      只要帶著一顆願意嘗試的心，就能從第一筆水彩開始，
+      畫出屬於自己的精彩。
+    </p>
+    <br>
+    <p>
+      本課程以水彩藝術為核心，融合
+      <span class="highlight">社會情緒學習（SEL）</span>
+      與
+      <span class="highlight">資訊素養</span>，
+      讓20至80歲不同世代的學員，
+      在藝術創作中探索自我、表達情緒、學習科技與欣賞彼此。
+    </p>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="icon">📅</div>
+      <h3>18週</h3>
+      <p>循序漸進的藝術學習旅程</p>
+    </div>
+    <div class="info-card">
+      <div class="icon">👨‍👩‍👧‍👦</div>
+      <h3>20－80歲</h3>
+      <p>歡迎不同世代共同學習</p>
+    </div>
+    <div class="info-card">
+      <div class="icon">🌱</div>
+      <h3>零基礎</h3>
+      <p>沒有繪畫經驗也能輕鬆參加</p>
+    </div>
+  </div>
+</section>
+
+<!-- 課程特色 -->
+<section class="soft-bg" id="features">
+  <div class="section-title">
+    <small>OUR FEATURES</small>
+    <h2>五大課程亮點</h2>
+    <p>不只是學畫畫，更是一次探索生活的旅程</p>
+  </div>
+
+  <div class="feature-grid">
+    <div class="feature">
+      <span>🎨</span>
+      <h3>水彩創作</h3>
+      <p>從調色、暈染到構圖，逐步完成專屬作品。</p>
+    </div>
+    <div class="feature">
+      <span>💗</span>
+      <h3>情緒探索</h3>
+      <p>透過色彩表達心情，認識自己與他人。</p>
+    </div>
+    <div class="feature">
+      <span>🤖</span>
+      <h3>AI藝術</h3>
+      <p>探索生成式AI，讓傳統藝術與科技相遇。</p>
+    </div>
+    <div class="feature">
+      <span>🤝</span>
+      <h3>跨世代交流</h3>
+      <p>分享生命故事，欣賞不同年齡的創意。</p>
+    </div>
+    <div class="feature">
+      <span>🌻</span>
+      <h3>成果展覽</h3>
+      <p>展示18週的學習成果與個人代表作品。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 課程資料 -->
+<section>
+  <div class="section-title">
+    <small>COURSE INFORMATION</small>
+    <h2>課程基本資料</h2>
+  </div>
+
+  <div class="course-info">
+    <table>
+      <tr><th>課程名稱</th><td>畫出心中的小宇宙</td></tr>
+      <tr><th>授課地點</th><td>彰化社區大學</td></tr>
+      <tr><th>課程週數</th><td>18週</td></tr>
+      <tr><th>適合對象</th><td>20至80歲成人</td></tr>
+      <tr><th>課程程度</th><td>初階、零基礎</td></tr>
+      <tr><th>核心特色</th><td>水彩藝術＋社會情緒學習＋資訊素養</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- 理念目標 -->
+<section class="soft-bg">
+  <div class="section-title">
+    <small>LEARNING GOALS</small>
+    <h2>課程理念與學習目標</h2>
+  </div>
+
+  <div class="description">
+    <article>
+      <h3>🌿 課程理念</h3>
+      <p>
+        透過水彩創作探索自我、表達情緒，
+        融合社會情緒學習與資訊素養，
+        培養藝術美感、數位判讀及跨世代交流能力，
+        讓藝術豐富生活。
+      </p>
+    </article>
+
+    <article>
+      <h3>🎯 課程目標</h3>
+      <p>
+        因應現代生活壓力與跨世代學習需求，
+        以水彩藝術為媒介，融入色彩學、構圖及繪畫技法，
+        結合情緒覺察、人際互動與資訊判讀，
+        培養創作能力、同理心及數位素養，
+        促進自我成長、世代交流與社區藝術參與。
+      </p>
+    </article>
+
+    <article>
+      <h3>🌱 招生條件</h3>
+      <p>
+        歡迎20至80歲對水彩藝術有興趣的民眾報名，
+        無須繪畫經驗或美術基礎。
+        只要具備基本閱讀、溝通及簡單操作能力，
+        願意嘗試創作、分享與欣賞，即可參與。
+      </p>
+    </article>
+
+    <article>
+      <h3>🖌️ 授課方式</h3>
+      <p>
+        講師示範與實際操作、個別指導與反覆練習、
+        團體互動及小組活動、案例討論與心得分享、
+        影片欣賞及圖像教學、實物觀賞及樣品教學。
+      </p>
+    </article>
+
+    <article>
+      <h3>🌻 未來發展計畫</h3>
+      <p>
+        未來可延伸水彩進階、數位藝術及在地文化創作，
+        結合社區踏查與跨世代共創，
+        建立持續展覽及交流平台，發展在地藝術特色。
+      </p>
+    </article>
+  </div>
+</section>
+
+<!-- 18週課程大綱 -->
+<section id="syllabus">
+  <div class="section-title">
+    <small>18 WEEKS JOURNEY</small>
+    <h2>18週完整課程大綱</h2>
+    <p>從第一筆水彩，到最後的成果展</p>
+  </div>
+
+  <div class="syllabus-wrap">
+    <table class="syllabus">
+      <thead>
+        <tr>
+          <th>週次</th>
+          <th>課程主題</th>
+          <th>教學內容</th>
+        </tr>
+      </thead>
+      <tbody id="courseTable"></tbody>
+    </table>
+  </div>
+</section>
+
+<!-- SEL -->
+<section class="soft-bg" id="sel">
+  <div class="section-title">
+    <small>SOCIAL EMOTIONAL LEARNING</small>
+    <h2>讓色彩成為情緒的出口</h2>
+    <p>融入SEL社會情緒學習五大核心能力</p>
+  </div>
+
+  <div class="sel-grid">
+    <div class="sel-card">
+      <h3>💗 自我覺察</h3>
+      <p>透過色彩表達心情，認識自己的情緒與特質。</p>
+    </div>
+    <div class="sel-card">
+      <h3>🌿 自我管理</h3>
+      <p>練習耐心、專注、挫折調適與情緒管理。</p>
+    </div>
+    <div class="sel-card">
+      <h3>🌍 社會覺察</h3>
+      <p>欣賞不同年齡層的作品，理解他人的感受。</p>
+    </div>
+    <div class="sel-card">
+      <h3>🤝 人際技巧</h3>
+      <p>透過分享及小組創作，練習溝通與合作。</p>
+    </div>
+    <div class="sel-card">
+      <h3>✨ 負責任的決策</h3>
+      <p>尊重創作差異，學習著作權及藝術倫理。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 資訊素養 -->
+<section id="literacy">
+  <div class="section-title">
+    <small>DIGITAL & INFORMATION LITERACY</small>
+    <h2>讓創意與科技一起飛翔</h2>
+    <p>把AI與資訊素養融入水彩藝術</p>
+  </div>
+
+  <div class="literacy">
+    <div class="literacy-card">
+      <h3>🔎 資訊搜尋</h3>
+      <p>使用搜尋引擎尋找藝術家、繪畫技法與創作靈感。</p>
+    </div>
+    <div class="literacy-card">
+      <h3>🧐 資訊判讀</h3>
+      <p>辨識圖片來源、AI生成內容及網路錯誤資訊。</p>
+    </div>
+    <div class="literacy-card">
+      <h3>🤖 數位創作</h3>
+      <p>認識AI圖像生成工具，運用數位科技輔助創作。</p>
+    </div>
+    <div class="literacy-card">
+      <h3>🔐 數位倫理</h3>
+      <p>學習著作權、圖片引用、AI倫理及個人隱私保護。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 招生宣傳 -->
+<section class="promo" id="join">
+  <h2>不必畫得完美，<br>只要願意開始！</h2>
+  <p>
+    每個人都有自己的色彩，<br>
+    每一幅畫都有屬於自己的故事。
+  </p>
+  <p style="margin-top:25px">
+    讓我們在彰化社區大學相遇，<br>
+    用18週的時間，為生活添上一抹美麗的色彩。
+  </p>
+  <a href="#about" class="hero-btn">重新探索課程 ↑</a>
+</section>
+
+<footer>
+  <p>🎨 畫出心中的小宇宙</p>
+  <p>彰化社區大學｜藝術 × 情緒 × 科技</p>
+  <p>讓學習成為生活中最美麗的風景。</p>
+</footer>
+
+<script>
+// 18週課程資料
+const courses = [
+["水彩初體驗：畫出第一筆","認識水彩工具、紙材及顏料，了解水彩特色與課程方向。透過簡單線條及色塊練習，完成第一幅水彩作品，建立創作信心。"],
+["色彩魔法：我的專屬調色盤","認識三原色、冷暖色及色彩混合，練習調色與色彩搭配。透過色彩選擇探索個人喜好，創作專屬色彩圖鑑。"],
+["水與顏料的奇幻旅行","學習乾濕畫法、漸層、暈染及留白技巧。觀察水與顏料的自然變化，透過實驗發現不同效果，培養探索精神。"],
+["花花世界：植物水彩日記","觀察花卉、葉片及植物形態，學習基本造型、線條與層次表現，完成一幅植物水彩畫，練習細心觀察。"],
+["風景慢旅行：畫出心中的風景","認識前景、中景、遠景及基本構圖，練習天空、山巒與水面的表現，將記憶中的美好風景化為畫作。"],
+["美食與生活：畫出幸福滋味","觀察水果、食物及生活用品的色彩與形狀，練習明暗、質感及簡單構圖，創作生活主題水彩畫。"],
+["情緒調色盤：畫出我的心情","認識喜悅、悲傷、憤怒與平靜等情緒，探索色彩與感受的關聯。透過自由暈染表達心情，練習自我覺察及情緒表達。"],
+["不一樣的我：創作與欣賞","以自我特色為主題進行創作，分享作品背後的故事。練習換位思考、尊重差異與正向回饋，欣賞不同世代的創意。"],
+["公民素養週","由彰化社區大學安排"],
+["AI藝術探險：讓想像力起飛","認識生成式AI與圖像工具，練習撰寫簡單提示詞，探索不同藝術風格，學習AI生成內容的特性及限制。"],
+["網路尋寶：藝術資訊判讀術","學習搜尋藝術圖片及資料，辨識資訊來源、圖片真偽與著作權，了解AI生成圖片與真實作品的差異，培養資訊素養。"],
+["名畫變變變：大師風格欣賞","欣賞不同藝術家的作品，認識藝術風格、色彩及構圖特色。透過觀察與討論，尋找靈感並轉化為自己的創作。"],
+["故事水彩：畫出生命中的回憶","以童年、家庭、旅行或重要回憶為主題，透過構圖及色彩敘事，完成一幅具有個人故事的水彩作品。"],
+["彰化印象：畫出家鄉之美","觀察彰化在地景觀、建築及文化特色，選擇喜愛的地方作為創作主題，將生活記憶轉化為藝術作品。"],
+["色彩共創：一起完成一幅畫","透過小組合作進行共同創作，練習溝通、分工、尊重及協調，體驗跨世代合作的樂趣。"],
+["我的代表作：創作實踐","學員自主選定主題，整合調色、暈染、構圖及情緒表達技巧，開始製作個人代表作品，教師個別指導。"],
+["作品整理：展覽策展人","完成作品修飾、命名及創作理念，學習拍攝與數位整理作品，製作個人作品介紹，準備成果展覽。"],
+["成果展","展示18週學習成果，分享創作故事與心得，欣賞彼此作品，透過成果展呈現藝術學習、自我成長及社區交流。"]
+];
+
+const tbody = document.getElementById("courseTable");
+
+courses.forEach((course, index) => {
+  const tr = document.createElement("tr");
+
+  const week = document.createElement("td");
+  week.textContent = `第${index + 1}週`;
+
+  const topic = document.createElement("td");
+  topic.textContent = course[0];
+
+  const content = document.createElement("td");
+  content.textContent = course[1];
+
+  if (index === 8) {
+    tr.classList.add("citizen");
+    topic.textContent = "公民素養週";
+    content.textContent = "由彰化社區大學安排";
+  }
+
+  tr.append(week, topic, content);
+  tbody.appendChild(tr);
+});
+</script>
+
+</body>
+</html>
