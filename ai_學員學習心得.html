@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101b2d">
+<title>讓 AI 解決我的生活大小事｜週六午後的創意冒險</title>
+<style>
+:root{--navy:#101b2d;--ink:#17243a;--cream:#fff8ed;--gold:#f3bd68;--cyan:#80d8df;--muted:#b9c5d4}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;background:var(--navy);color:#fff;line-height:1.8}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1120px,90%);margin:auto}
+nav{position:absolute;top:0;left:0;width:100%;z-index:3;padding:22px 0;display:flex;justify-content:space-between;align-items:center}
+.brand{font-weight:800;letter-spacing:.08em}
+.navlinks{display:flex;gap:25px;color:#d7e0e9;font-size:.9rem}
+.hero{min-height:760px;display:flex;align-items:center;position:relative;overflow:hidden;background:
+radial-gradient(ellipse at 75% 35%,rgba(128,216,223,.22),transparent 30%),
+radial-gradient(ellipse at 18% 80%,rgba(243,189,104,.19),transparent 35%),
+linear-gradient(120deg,#101b2d 5%,#172c45 55%,#1a3a50 100%)}
+.hero:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:54px 54px;mask-image:linear-gradient(to bottom,black,transparent)}
+.hero-inner{position:relative;z-index:1;padding:150px 0 100px;max-width:760px}
+.eyebrow{color:var(--gold);letter-spacing:.22em;font-size:.85rem;font-weight:700}
+h1{font-size:clamp(2.8rem,7vw,5.8rem);line-height:1.16;letter-spacing:.02em;margin:22px 0}
+h1 span{color:var(--gold)}
+.lead{font-size:clamp(1.05rem,2vw,1.3rem);color:#d5e0e9;max-width:640px}
+.meta{display:flex;gap:12px;flex-wrap:wrap;margin:34px 0}
+.pill{border:1px solid #ffffff35;border-radius:99px;padding:8px 16px;color:#e8eef4;font-size:.9rem;background:#ffffff0b}
+.cta{display:inline-block;margin-top:12px;padding:13px 24px;border-radius:999px;background:var(--gold);color:#1b2636;font-weight:800;transition:.2s}
+.cta:hover{transform:translateY(-3px);box-shadow:0 10px 30px #f3bd6840}
+.orbit{position:absolute;right:7%;top:22%;width:min(36vw,390px);aspect-ratio:1;border:1px solid #80d8df55;border-radius:50%;display:grid;place-items:center;box-shadow:0 0 80px #80d8df18,inset 0 0 80px #80d8df12}
+.orbit:before,.orbit:after{content:"";position:absolute;border:1px solid #f3bd6845;border-radius:50%;inset:12%;transform:rotate(35deg) scaleX(.55)}
+.orbit:after{transform:rotate(-35deg) scaleX(.55)}
+.orbit-core{width:44%;aspect-ratio:1;border-radius:50%;display:grid;place-items:center;text-align:center;background:linear-gradient(145deg,#f7d99f,#e9a84f);color:#142239;font-size:3.4rem;box-shadow:0 0 65px #f3bd6870}
+.float{position:absolute;background:#ffffff12;border:1px solid #ffffff30;backdrop-filter:blur(8px);padding:10px 16px;border-radius:14px;font-size:.9rem;color:#e8f5f6}
+.f1{top:12%;left:5%}.f2{right:-4%;top:25%}.f3{bottom:14%;left:-8%}
+section{padding:100px 0}
+.section-kicker{color:#dcae68;letter-spacing:.18em;font-size:.8rem;font-weight:800}
+h2{font-size:clamp(2rem,4vw,3.2rem);line-height:1.3;margin:12px 0 20px}
+.intro{background:var(--cream);color:var(--ink)}
+.intro-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:65px;align-items:center}
+.intro p{color:#536174;font-size:1.06rem}
+.quote{font-size:1.35rem!important;font-weight:800;color:#243a53!important;border-left:4px solid #e4ad5b;padding-left:20px;margin-top:30px}
+.scene{min-height:390px;border-radius:28px;padding:28px;position:relative;overflow:hidden;background:linear-gradient(145deg,#f2c98a,#e6a95d 50%,#a9c9c8);color:#183047;display:flex;flex-direction:column;justify-content:space-between}
+.scene:after{content:"";position:absolute;width:280px;height:280px;border-radius:50%;background:#fff7d4aa;right:-50px;top:-70px;filter:blur(2px)}
+.scene-label{position:relative;z-index:1;font-weight:800;letter-spacing:.12em}
+.window{position:relative;z-index:1;margin:auto;width:85%;height:190px;border:9px solid #28425a;border-bottom-width:18px;border-radius:10px;background:linear-gradient(#b7e0e3 0 55%,#668d8c 55%);box-shadow:0 20px 35px #27394b55}
+.window:before{content:"";position:absolute;left:50%;top:0;height:100%;border-left:7px solid #28425a}
+.window:after{content:"";position:absolute;top:55%;width:100%;border-top:7px solid #28425a}
+.scene-caption{position:relative;z-index:1;font-weight:700}
+.works{background:#14243a}
+.center{text-align:center;max-width:720px;margin:0 auto 48px}
+.center p{color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(5,1fr);gap:15px}
+.card{padding:25px 18px;border:1px solid #ffffff20;background:linear-gradient(160deg,#ffffff12,#ffffff05);border-radius:20px;min-height:205px;transition:.25s}
+.card:hover{transform:translateY(-7px);border-color:#f3bd6880}
+.card .emoji{font-size:2.4rem;display:block;margin-bottom:14px}
+.card h3{margin:0 0 8px;font-size:1.15rem}
+.card p{font-size:.9rem;color:#bac8d7;margin:0}
+.journey{background:#f8f4ed;color:var(--ink)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:45px}
+.step{border-top:2px solid #d6a45c;padding:20px 10px}
+.num{font-size:2.5rem;color:#d6a45c;font-weight:900}
+.step h3{margin:6px 0}.step p{color:#647084;font-size:.95rem}
+.final{padding:110px 0;text-align:center;background:radial-gradient(ellipse at 50% 0%,#31536a,#101b2d 65%)}
+.final blockquote{font-size:clamp(1.6rem,4vw,3rem);font-weight:900;line-height:1.5;max-width:900px;margin:25px auto}
+.final blockquote span{color:var(--gold)}
+.final p{color:#c5d0dc}
+footer{padding:24px;text-align:center;color:#93a4b8;background:#0b1422;font-size:.85rem}
+@media(max-width:850px){.orbit{opacity:.28;right:-12%;top:25%;width:55vw}.cards{grid-template-columns:repeat(2,1fr)}.intro-grid{grid-template-columns:1fr;gap:35px}.steps{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.navlinks{gap:12px;font-size:.78rem}.hero{min-height:700px}.hero-inner{padding-top:140px}.orbit{top:34%;right:-25%;width:70vw}.cards{grid-template-columns:1fr 1fr}.card{min-height:185px;padding:18px 14px}section{padding:75px 0}.steps{grid-template-columns:1fr 1fr}.scene{min-height:300px}}
+</style>
+</head>
+<body>
+<nav class="wrap">
+  <a class="brand" href="#">AI × LIFE</a>
+  <div class="navlinks"><a href="#about">課程故事</a><a href="#create">創作可能</a><a href="#journey">學習旅程</a></div>
+</nav>
+<header class="hero">
+  <div class="wrap hero-inner">
+    <div class="eyebrow">SATURDAY AFTERNOON · AI CREATIVE JOURNEY</div>
+    <h1>讓 AI 解決<br><span>我的生活大小事</span></h1>
+    <p class="lead">讓想像有形，讓創意發光，讓不可能成為可能。每一個念頭，都可能成為下一件令人驚喜的作品。</p>
+    <div class="meta"><span class="pill">📍 彰化社區大學</span><span class="pill">🕒 每週六下午</span><span class="pill">✨ AI 初階學習</span></div>
+    <a class="cta" href="#about">走進我的 AI 世界　↓</a>
+  </div>
+  <div class="orbit" aria-hidden="true"><div class="orbit-core">✦</div><span class="float f1">文字變故事</span><span class="float f2">想像成真</span><span class="float f3">創意不設限</span></div>
+</header>
+<main>
+<section class="intro" id="about">
+  <div class="wrap intro-grid">
+    <div>
+      <div class="section-kicker">01 / THE STORY</div>
+      <h2>一個週六午後，<br>開啟一場創意冒險。</h2>
+      <p>我是林筱雲，今年 26 歲，帶著好奇心走進 AI 的世界。每到週六下午，我在彰化社區大學參與「讓 AI 解決我的生活大小事」AI 初階課程。</p>
+      <p>一開始，面對陌生的科技工具，也許有些不知所措；但隨著一次次提問、嘗試與突破，神奇的事情開始發生。</p>
+      <p class="quote">學習不只是學會操作工具，更是發現自己原來也能創造更多可能。</p>
+    </div>
+    <div class="scene" role="img" aria-label="午後陽光灑進教室的意象">
+      <div class="scene-label">A LITTLE SPARK, A BIG IDEA</div>
+      <div class="window"></div>
+      <div class="scene-caption">午後的陽光，照亮每一個正在萌芽的想法。</div>
+    </div>
+  </div>
+</section>
+<section class="works" id="create">
+  <div class="wrap">
+    <div class="center">
+      <div class="section-kicker">02 / WHAT CAN WE CREATE?</div>
+      <h2>一個想法，能有多少種模樣？</h2>
+      <p>從一句提問開始，讓 AI 陪伴我們，把腦海中的靈感化成看得見、聽得到、用得上的創作。</p>
+    </div>
+    <div class="cards">
+      <article class="card"><span class="emoji">✍️</span><h3>文字・故事</h3><p>把靈感寫成文章、企劃與動人的故事。</p></article>
+      <article class="card"><span class="emoji">🎨</span><h3>圖像・設計</h3><p>讓腦海中的畫面，變成獨一無二的視覺作品。</p></article>
+      <article class="card"><span class="emoji">🎬</span><h3>影片・影像</h3><p>讓靜態畫面動起來，說出自己的故事。</p></article>
+      <article class="card"><span class="emoji">🎵</span><h3>音樂・旋律</h3><p>把情緒與想像，譜寫成專屬的聲音。</p></article>
+      <article class="card"><span class="emoji">💻</span><h3>網頁・程式</h3><p>從零開始，打造能分享、能互動的小作品。</p></article>
+    </div>
+  </div>
+</section>
+<section class="journey" id="journey">
+  <div class="wrap">
+    <div class="center">
+      <div class="section-kicker">03 / EVERY STEP MATTERS</div>
+      <h2>每一次突破，都是新的起點。</h2>
+      <p>不必一開始就什麼都會。願意好奇、勇敢嘗試，就已經踏出了重要的一步。</p>
+    </div>
+    <div class="steps">
+      <article class="step"><div class="num">01</div><h3>提出想法</h3><p>把生活中的問題、腦海裡的點子說出來。</p></article>
+      <article class="step"><div class="num">02</div><h3>勇敢嘗試</h3><p>學習與 AI 對話，從一次次提問找到方向。</p></article>
+      <article class="step"><div class="num">03</div><h3>創作實現</h3><p>讓文字、圖像、影片、音樂與網頁逐漸成形。</p></article>
+      <article class="step"><div class="num">04</div><h3>分享感動</h3><p>珍藏學習成果，也把創意與感動分享出去。</p></article>
+    </div>
+  </div>
+</section>
+<section class="final">
+  <div class="wrap">
+    <div class="section-kicker">THE MOST BEAUTIFUL DISCOVERY</div>
+    <blockquote>原來，AI 不只是科技，<br><span>更是讓夢想落地的翅膀。</span></blockquote>
+    <p>這不只是一堂學習 AI 的課，更是一趟不斷突破自己、把生活變得更有趣的創意冒險。</p>
+    <a class="cta" href="#about">再次探索這趟旅程 ↑</a>
+  </div>
+</section>
+</main>
+<footer>林筱雲｜彰化社區大學「讓 AI 解決我的生活大小事」｜每週六下午</footer>
+</body>
+</html>
